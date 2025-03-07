@@ -23,8 +23,12 @@ export const Count = () =>{
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 })
 
-            setHistory((prevHistory) => [...prevHistory.flat(), response.data]);
+            setHistory((prevHistory) => [...prevHistory, response.data]);
         }, 0);
+    }
+
+    const getHistory = async(id) =>{
+        alert(id);
     }
 
     useEffect(()=>{
@@ -51,7 +55,7 @@ export const Count = () =>{
                 <DivRight>
                     <ul>
                         {!history ? "로딩중" : history.slice(-17).map((item, index) =>(
-                            <li key={index}> Log: {item.createdAt}</li>
+                            <li onClick={() => getHistory(item.id)} key={index}> Log: {item.createdAt}</li>
                         )) }
                     </ul>
                 </DivRight> 
